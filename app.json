@@ -1,7 +1,10 @@
 {
-  "addons": [
-
-  ],
+  "addons": [{
+    "plan": "heroku-postgresql:hobby-dev",
+    "options": {
+      "version": "10"
+    }
+  }],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -16,6 +19,7 @@
   },
   "name": "nodejs-db",
   "scripts": {
+    "postdeploy": "psql $DATABASE_URL -f seed.sql"
   },
   "stack": "heroku-18"
 }
