@@ -6,7 +6,7 @@ const { DATABASE_URL } = process.env;
 
 const server = http.createServer((req, res) => {
   const client = new Client({
-    connectionString: DATABASE_URL
+    connectionString: DATABASE_URL,
   });
 
   res.statusCode = 200;
@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
 
   client.connect()
     .then(() => client.query('SELECT * FROM mytable'))
-    .then(result => {
+    .then((result) => {
       res.end(`${result.rows[0].name}\n`);
       client.end();
     })
